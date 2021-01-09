@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="showcase">
+    <div class="content-container">
+        <div class="content">
+            <h1>With love for every animal</h1>
+            <p> With our help, you can take special care of all kond of animals you are responsible for</p>
+        </div>
+    </div>
+</div>
+<div class="feature-container">
+    <div class="box">
+        <div><i class="fas fa-horse fa-3x"></i></div>
+        <div class="feature-text-area">
+            <h2>Manager</h2>
+            <p>Manage your animals collection</p>
+            <p>View, add and more!</p>
+        </div>
+        @Html.ActionLink("Herd", "Table", "Home",null, new { @class = "btn btn-primary" })
+    </div>
+    <div class="box">
+        <div><i class="fas fa-hippo fa-3x"></i></div>
+        <div class="feature-text-area">
+            <h2>Animal Record</h2>
+            <p>Keep track pf medicines, nutrition etc. of every animal</p>
+        </div>
+        @Html.ActionLink("See Record", "AnimalRaport", "Home", null, new { @class = "btn btn-primary" })
+    </div>
+    <div class="box">
+        <div><i class="fas fa-dove fa-3x"></i></div>
+        <div class="feature-text-area">
+            <h2>Contact us</h2>
+            <p> Need help? Do you have any questions?</p>
+            <p>We are right here!</p>
+        </div>
+        @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "btn btn-primary" })
+    </div>
+</div>

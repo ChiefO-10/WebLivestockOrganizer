@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Livestock Organizer</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://kit.fontawesome.com/7bc1a0755f.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="m-navbar">
+        <div id="logo">
+            <i class="fas fa-paw fa-3x "></i><h1><span id="livestock">Livestock</span><span id="organizer">Organizer</span></h1>
+        </div>
+        <div>
+            <ul>
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Herd", "Table", "Home")</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="body-container">
+        <div class="main-container">
+            @RenderBody()
+        </div>
+        <div id="place-filler"></div>
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Livestock Organizer by Rafal Kucharski</p>
+        </footer>
+    </div>
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

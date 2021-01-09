@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebLivestockOrganizer.Models.AnimalSummaryShort>
+
+@{
+    ViewBag.Title = "Table";
+}
+
+<h2>Table</h2>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model=>model.AnimalNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model=>model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model=>model.DateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model=>model.HerdNumber)
+        </th>
+    </tr>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnimalNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @item.DateOfBirth.ToShortDateString()
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HerdNumber)
+        </td>
+    </tr>
+}
+</table>
