@@ -19,7 +19,7 @@ namespace LivestockOrganizerCoreMVC.Controllers
         }
 
         // GET: ManagerController
-        public ActionResult AnimalTable()
+        public ActionResult Animals()
         {
             ViewBag.Message = "Short herd summary";
             var animalcollection = _repository.GetAllAnimals();
@@ -28,15 +28,21 @@ namespace LivestockOrganizerCoreMVC.Controllers
             return View(animalModelCollection);
         }
 
-        // GET: ManagerController/Details/5
+        // GET: ManagerController/AnimalTable/5
+        [HttpGet("{id}")]
+        [Route("Manager/Details/{id}")]
         public ActionResult Details(int id)
         {
-            return View();
+            var animal = _repository.GetAnimalById(id);
+            if (animal == null) return NotFound();
+            var animalMaped = _mapper.Map<AnimalModel>(animal);
+            return View(animalMaped);
         }
 
         // GET: ManagerController/Create
-        public ActionResult Create()
+        public ActionResult CreateForm()
         {
+
             return View();
         }
 
@@ -47,11 +53,25 @@ namespace LivestockOrganizerCoreMVC.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var a = new AnimalModel();
+                a.AnimalNumber = collection["AnimalNumber"];
+                a.Country = collection["Country"];
+                a.Gender = collection["Gender"];
+                a.MotherNumber = collection["MotherNumber"];
+                a.FatherNumber = collection["FatherNumber"];
+                a.DateOfBirth = DateTime.Parse(collection["DateOfBirth"]).Date;
+                a.HerdNumber = collection["HerdNumber"];
+                a.PlaceOfBirth = collection["PlaceOfBirth"];
+                a.PassportSerial = collection["PassportSerial"];
+                a.PassportDate = DateTime.Parse(collection["PassportDate"]).Date;
+
+                _repository.CreateAnimal(a);
+
+                return RedirectToAction(nameof(Animals));
             }
             catch
             {
-                return View();
+                return BadRequest();
             }
         }
 

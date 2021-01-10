@@ -47,7 +47,15 @@ namespace LivestockDataAccess.Adapters
         }
         public void CreateAnimal(IAnimal animal)
         {
-            throw new NotImplementedException();
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(_connectionString))
+            {
+                connection.QueryFirstOrDefault<Animal>($@"spAddAnimal @ANUMBER, @COUNTRY, @GENDER, @MOTHERNUM,
+                    @FATHERNUM, @DATEBIRTH, @HNUMBER, @BIRTHPLACE, @PASSPORTN, @PASSPORTDATE",
+                    new { ANUMBER = animal.AnimalNumber, COUNTRY = animal.Country, GENDER = animal.Gender,
+                        MOTHERNUM = animal.MotherNumber, FATHERNUM = animal.FatherNumber, DATEBIRTH = animal.DateOfBirth,
+                        HNUMBER = animal.HerdNumber, BIRTHPLACE = animal.PlaceOfBirth, PASSPORTN = animal.PassportSerial,
+                        PASSPORTDATE = animal.PassportDate});
+            }
         }
         public void UpdateAnimal(IAnimal animal)
         {
