@@ -73,6 +73,7 @@
     <Build Include="dbo\Tables\Owners.sql" />
     <Build Include="dbo\Stored Procedures\spGetAnimalByNumber.sql" />
     <Build Include="dbo\Stored Procedures\spGetAllLivestock.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAnimalById.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SQLDatabase.refactorlog" />

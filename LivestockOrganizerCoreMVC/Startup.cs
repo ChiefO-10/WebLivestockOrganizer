@@ -1,4 +1,7 @@
 using AutoMapper;
+using LivestockDataAccess.Adapters;
+//using LivestockOrganizerCoreMVC.Data;
+using LsOCore.RepoContracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,7 +25,10 @@ namespace LivestockOrganizerCoreMVC
         {
             services.AddControllersWithViews();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            
+
+            //Consider use Option Pattern later https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-2.2
+            services.AddScoped<IAnimalRepo>(param => new AnimalAdapter(Configuration.GetConnectionString("LivestockOrganizerConnection")));
+            //services.AddScoped<IAnimalRepo>(param => new TestRepo(Configuration.GetConnectionString("LivestockOrganizerConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

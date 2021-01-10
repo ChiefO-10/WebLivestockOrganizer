@@ -10,10 +10,12 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Livestock Data Access\LivestockDataAccess.csproj" />
+    <ProjectReference Include="..\LsOCore\LsOCore.csproj" />
   </ItemGroup>
 
 </Project>

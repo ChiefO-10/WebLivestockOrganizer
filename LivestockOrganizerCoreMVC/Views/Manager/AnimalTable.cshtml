@@ -1,7 +1,7 @@
-﻿@model IEnumerable<WebLivestockOrganizer.Models.AnimalSummaryShort>
+﻿@model IEnumerable<LivestockOrganizerCoreMVC.Models.AnimalModel>
 
 @{
-    ViewBag.Title = "Table";
+    ViewBag.Title = "Animal Collection";
 }
 
 <h2>Table</h2>
@@ -14,10 +14,28 @@
             @Html.DisplayNameFor(model=>model.Gender)
         </th>
         <th>
-            @Html.DisplayNameFor(model=>model.DateOfBirth)
+            @Html.DisplayNameFor(model=>model.PassportSerial)
         </th>
         <th>
             @Html.DisplayNameFor(model=>model.HerdNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model=>model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model=>model.MotherNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model=>model.FatherNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model=>model.DateOfBirth)
+        </th>
+         <th>
+            @Html.DisplayNameFor(model=>model.PlaceOfBirth)
+        </th>
+         <th>
+            @Html.DisplayNameFor(model=>model.PassportDate)
         </th>
     </tr>
 @foreach (var item in Model)

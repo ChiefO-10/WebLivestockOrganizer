@@ -45,14 +45,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Animal.cs" />
     <Compile Include="Adapters\AnimalAdapter.cs" />
+    <Compile Include="Models\Animal.cs" />
     <Compile Include="Helpers\ConnectionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\LsOCore\LsOCore.csproj">
+      <Project>{07f02b75-11dd-4ec5-85ea-76af1d328a73}</Project>
+      <Name>LsOCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

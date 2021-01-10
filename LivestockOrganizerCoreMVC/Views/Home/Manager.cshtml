@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Manage";
+}
+
+<div class="feature-container">
+    <div class="box">
+        <div><i class="fas fa-eye fa-3x"></i></div>
+        <div class="feature-text-area">
+            <h2>Show herd</h2>
+            <p>Show your animals collection</p>
+        </div>
+        @Html.ActionLink("Show", "AnimalTable", "Manager", null, new { @class = "btn btn-primary" })
+    </div>
+    <div class="box">
+        <div><i class="fas fa-folder-plus fa-3x"></i></div>
+        <div class="feature-text-area">
+            <h2>Add Animal</h2>
+            <p>Add new record to collection</p>
+        </div>
+        @Html.ActionLink("Add", "AnimalRaport", "Home", null, new { @class = "btn btn-primary" })
+    </div>
+    <div class="box">
+        <div><i class="fas fa-edit fa-3x"></i></div>
+        <div class="feature-text-area">
+            <h2>Edit Record</h2>
+            <p>Edit animal data</p>
+        </div>
+        @Html.ActionLink("Edit", "Contact", "Home", null, new { @class = "btn btn-primary" })
+    </div>
+    <div class="box">
+        <div><i class="fas fa-trash fa-3x"></i></div>
+        <div class="feature-text-area">
+            <h2>Delete Record</h2>
+            <p>Delete animal data</p>
+        </div>
+        @Html.ActionLink("Delete", "AnimalRaport", "Home", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+<div class="showcase">
+    <div class="content-container">
+        <div class="content">
+            <h1>With love for every animal</h1>
+            <p> With our help, you can take special care of all kinds of animals you are responsible for</p>
+        </div>
+    </div>
+</div>

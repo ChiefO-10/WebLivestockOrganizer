@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE [dbo].[spGetAnimalById]
+	@Id NVARCHAR(50)
+AS
+BEGIN
+SET NOCOUNT ON;
+	SELECT * FROM [dbo].[Livestock]
+	WHERE Id = @Id
+END

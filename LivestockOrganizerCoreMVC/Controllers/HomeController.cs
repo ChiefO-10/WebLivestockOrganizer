@@ -32,20 +32,9 @@ namespace LivestockOrganizerCoreMVC.Controllers
         {
             return View();
         }
-        public IActionResult Table()
+        public IActionResult Manager()
         {
-            ViewBag.Message = "Short herd summary";
-
-
-
-            List<AnimalShortModel> animalList = new List<AnimalShortModel>();
-
-            animalList.Add(new AnimalShortModel { AnimalNumber = "123", Gender = "male", DateOfBirth = DateTime.Today.Date, HerdNumber = "312" });
-            animalList.Add(new AnimalShortModel { AnimalNumber = "123", Gender = "male", DateOfBirth = DateTime.Today, HerdNumber = "312" });
-            animalList.Add(new AnimalShortModel { AnimalNumber = "123", Gender = "male", DateOfBirth = DateTime.Today, HerdNumber = "312" });
-            animalList.Add(new AnimalShortModel { AnimalNumber = "123", Gender = "male", DateOfBirth = DateTime.Today, HerdNumber = "312" });
-
-            return View(animalList);
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
