@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using LivestockOrganizerCoreMVC.Models;
+using LsOCore.DataContracts;
 using LsOCore.RepoContracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,20 +19,72 @@ namespace LivestockOrganizerCoreMVC.Controllers
             _mapper = mapper;
         }
 
-        // GET: ManagerController
+        // GET: Manager
         public ActionResult Animals()
         {
-            ViewBag.Message = "Short herd summary";
-            var animalcollection = _repository.GetAllAnimals();
+            try
+            {
+                ViewBag.Message = "Short herd summary";
+                var animalcollection = _repository.GetAllAnimals();
 
-            var animalModelCollection = _mapper.Map<IEnumerable<AnimalModel>>(animalcollection);
-            return View(animalModelCollection);
+                var animalModelCollection = _mapper.Map<IEnumerable<AnimalModel>>(animalcollection);
+                return View(animalModelCollection);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
         }
 
-        // GET: ManagerController/AnimalTable/5
-        [HttpGet("{id}")]
-        [Route("Manager/Details/{id}")]
+        // GET: Manager/Details/5
         public ActionResult Details(int id)
+        {
+            try
+            {
+                var animal = _repository.GetAnimalById(id);
+                if (animal == null) return NotFound();
+                var animalMaped = _mapper.Map<AnimalModel>(animal);
+                return View(animalMaped);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
+
+        // GET: Manager/Create
+        public ActionResult CreateForm()
+        {
+            return View();
+        }
+
+        // POST: Manager/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(AnimalModel animal)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var mappedAnimal = _mapper.Map<IAnimal>(animal);
+                    _repository.CreateAnimal(mappedAnimal);
+
+                    return RedirectToAction(nameof(Animals));
+                }
+                catch
+                {
+                    return BadRequest();
+                }
+            }
+            return BadRequest();
+
+        }
+
+        // GET: Manager/Edit/5
+        [HttpGet]
+        [Route("/Manager/Edit/{id}")]
+        public ActionResult Edit(int id)
         {
             var animal = _repository.GetAnimalById(id);
             if (animal == null) return NotFound();
@@ -39,68 +92,58 @@ namespace LivestockOrganizerCoreMVC.Controllers
             return View(animalMaped);
         }
 
-        // GET: ManagerController/Create
-        public ActionResult CreateForm()
+        // POST: Manager/Edit/5
+        [HttpPost("{id}")]
+        [Route("/Manager/Edit/{id}")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, AnimalModel animal)
         {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var DBanimal = _repository.GetAnimalById(id);
+                    if (DBanimal == null) return NotFound();
+                    var animalMaped = _mapper.Map<AnimalModel>(DBanimal);
+                    animal.Id = animalMaped.Id;
+                    var animalToDB = _mapper.Map<IAnimal>(animal);
+                    _repository.UpdateAnimal(animalToDB);
 
-            return View();
+                    return RedirectToAction(nameof(Animals));
+                }
+                catch (Exception e)
+                {
+                    var String = e.Message;
+                    return BadRequest();
+                }
+            }
+            return BadRequest();
+
         }
 
-        // POST: ManagerController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Delete(int id)
         {
             try
             {
-                var a = new AnimalModel();
-                a.AnimalNumber = collection["AnimalNumber"];
-                a.Country = collection["Country"];
-                a.Gender = collection["Gender"];
-                a.MotherNumber = collection["MotherNumber"];
-                a.FatherNumber = collection["FatherNumber"];
-                a.DateOfBirth = DateTime.Parse(collection["DateOfBirth"]).Date;
-                a.HerdNumber = collection["HerdNumber"];
-                a.PlaceOfBirth = collection["PlaceOfBirth"];
-                a.PassportSerial = collection["PassportSerial"];
-                a.PassportDate = DateTime.Parse(collection["PassportDate"]).Date;
-
-                _repository.CreateAnimal(a);
-
+                var DBanimal = _repository.GetAnimalById(id);
+                if (DBanimal == null) return NotFound();
+                _repository.DeleteAnimal(DBanimal);
                 return RedirectToAction(nameof(Animals));
             }
-            catch
+            catch(Exception e)
             {
+                var String = e.Message;
                 return BadRequest();
             }
         }
 
-        // GET: ManagerController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
 
-        // POST: ManagerController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ManagerController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        //    return RedirectToAction("");
+        //}
 
         // POST: ManagerController/Delete/5
         [HttpPost]

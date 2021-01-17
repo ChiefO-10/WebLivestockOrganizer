@@ -59,11 +59,22 @@ namespace LivestockDataAccess.Adapters
         }
         public void UpdateAnimal(IAnimal animal)
         {
-            throw new NotImplementedException();
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(_connectionString))
+            {
+                connection.QueryFirstOrDefault<Animal>($@"spUpdateAnimal @ID, @ANUMBER, @COUNTRY, @GENDER, @MOTHERNUM,
+                    @FATHERNUM, @DATEBIRTH, @HNUMBER, @BIRTHPLACE, @PASSPORTN, @PASSPORTDATE",
+                    new {ID = animal.Id, ANUMBER = animal.AnimalNumber, COUNTRY = animal.Country, GENDER = animal.Gender,
+                        MOTHERNUM = animal.MotherNumber, FATHERNUM = animal.FatherNumber, DATEBIRTH = animal.DateOfBirth,
+                        HNUMBER = animal.HerdNumber, BIRTHPLACE = animal.PlaceOfBirth, PASSPORTN = animal.PassportSerial,
+                        PASSPORTDATE = animal.PassportDate});
+            }
         }
         public void DeleteAnimal(IAnimal animal)
         {
-            throw new NotImplementedException();
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(_connectionString))
+            {
+                connection.QueryFirstOrDefault<Animal>($@"spDeleteAnimal @ID", new { ID = animal.Id, });
+            }
         }
         /// <summary>
         /// Get single animal by its number

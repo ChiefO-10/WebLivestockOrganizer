@@ -14,6 +14,7 @@ namespace LivestockOrganizerCoreMVC.MappingProfiles
         public AnimalProfiles()
         {
             CreateMap<IAnimal, AnimalModel>();
+            CreateMap<AnimalModel, IAnimal>();
         }
     }
 }

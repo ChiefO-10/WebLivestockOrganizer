@@ -9,7 +9,7 @@
             <h2>Show herd</h2>
             <p>Show your animals collection</p>
         </div>
-        @Html.ActionLink("Show", "Animals", "Manager", null, new { @class = "btn btn-primary" })
+        <a class="btn btn-primary" asp-controller="Manager" asp-action="Animals" asp-area="">Show</a>
     </div>
     <div class="box">
         <div><i class="fas fa-folder-plus fa-3x"></i></div>
@@ -17,7 +17,7 @@
             <h2>Add Animal</h2>
             <p>Add new record to collection</p>
         </div>
-        @Html.ActionLink("Add", "CreateForm", "Manager", null, new { @class = "btn btn-primary" })
+        <a class="btn btn-primary" asp-controller="Manager" asp-action="CreateForm" asp-area="">Add</a>
     </div>
     <div class="box">
         <div><i class="fas fa-edit fa-3x"></i></div>
@@ -25,7 +25,7 @@
             <h2>Edit Record</h2>
             <p>Edit animal data</p>
         </div>
-        @Html.ActionLink("Edit", "Contact", "Home", null, new { @class = "btn btn-primary" })
+        <a class="btn btn-primary" asp-controller="Manager" asp-action="Animals" asp-area="">Edit</a>
     </div>
     <div class="box">
         <div><i class="fas fa-trash fa-3x"></i></div>
@@ -33,7 +33,7 @@
             <h2>Delete Record</h2>
             <p>Delete animal data</p>
         </div>
-        @Html.ActionLink("Delete", "AnimalRaport", "Home", null, new { @class = "btn btn-primary" })
+        <a class="btn btn-primary" asp-controller="Manager" asp-action="Animals" asp-area="">Delete</a>
     </div>
 </div>
 <div class="showcase">
