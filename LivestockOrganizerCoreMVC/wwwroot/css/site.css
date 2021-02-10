@@ -227,6 +227,7 @@ a {
     text-align: center;
 }
 
+/* Animals Table */
 .animal-table{
     margin: 20px;
 }
@@ -234,6 +235,7 @@ a {
     color: var(--primary-dark);
 }
     .animal-table table {
+        margin: 1rem 0rem;
         padding: 10px;
         width: 100%;
         border: 1px solid black;
@@ -263,5 +265,8 @@ a {
         border-bottom: hidden;
         width: 10px;
     }
+.search-animal-form {
+    margin: 1rem
+}
 
 

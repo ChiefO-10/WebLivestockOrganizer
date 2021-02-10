@@ -1,5 +1,6 @@
 using AutoMapper;
 using LivestockDataAccess.Adapters;
+using LivestockOrganizerCoreMVC.TypeConverters;
 //using LivestockOrganizerCoreMVC.Data;
 using LsOCore.RepoContracts;
 using Microsoft.AspNetCore.Builder;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.ComponentModel;
 
 namespace LivestockOrganizerCoreMVC
 {
@@ -29,6 +31,7 @@ namespace LivestockOrganizerCoreMVC
             //Consider use Option Pattern later https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-2.2
             services.AddScoped<IAnimalRepo>(param => new AnimalAdapter(Configuration.GetConnectionString("LivestockOrganizerConnection")));
             //services.AddScoped<IAnimalRepo>(param => new TestRepo(Configuration.GetConnectionString("LivestockOrganizerConnection")));
+            TypeDescriptor.AddAttributes(typeof(DateTime), new TypeConverterAttribute(typeof(deDateTimeConverter)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

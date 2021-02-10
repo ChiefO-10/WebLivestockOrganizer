@@ -4,8 +4,57 @@
     ViewBag.Title = "Animal Collection";
 }
 <div class="animal-table">
-    <h2 class="animal-table">Table</h2>
-    <table >
+    <h2 class="animal-table">Herd</h2>
+    <a class="btn-primary-small" asp-controller="Manager" asp-action="CreateForm">Add New</a>
+    <form class="search-animal-form" asp-controller="Manager" asp-action="Animals" method="get">
+        <div>
+            <span>
+                <label>Animal Number : </label>
+                <input type="text" name="AnimalNumber" />
+            </span>
+            <span>
+                <label>Country : </label>
+                <input type="text" name="Country" />
+            </span>
+            <span>
+                <label>Gender : </label>
+                <input type="text" name="Gender" />
+            </span>
+            <span>
+                <label>DateOfBirth : </label>
+                <input type="text" name="DateOfBirth" />
+            </span>
+            <span>
+                <label>HerdNumber : </label>
+                <input type="text" name="HerdNumber" />
+            </span>
+            <span>
+                <label>PassportSerial : </label>
+                <input type="text" name="PassportSerial" />
+            </span>
+            <span>
+                <label>MotherNumber : </label>
+                <input type="text" name="MotherNumber" />
+            </span>
+            <span>
+                <label>FatherNumber : </label>
+                <input type="text" name="FatherNumber" />
+            </span>
+            <span>
+                <label>PlaceOfBirth : </label>
+                <input type="text" name="PlaceOfBirth" />
+            </span>
+            <span>
+                <label>PassportDate : </label>
+                <input type="text" name="PassportDate" />
+            </span>
+            <input type="submit" value="Search" />
+        </div>
+    </form>
+    <div>
+        <a asp-action="Animals" class="btn-primary-small">Back to full list</a>
+    </div>
+    <table>
         <tr>
             <th class="details">
 
@@ -43,47 +92,47 @@
         </tr>
         @foreach (var item in Model)
         {
-    <tr>
-        <td class="details">
-            <a class="btn-primary-small" asp-controller="Manager" asp-action="Details" asp-route-id="@item.Id">Details</a>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AnimalNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gender)
-        </td>
-        <td>
-            @item.DateOfBirth.ToShortDateString()
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HerdNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PassportSerial)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Country)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MotherNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FatherNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PlaceOfBirth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PassportDate)
-        </td>
-        <td class="edit">
-            <a class="btn-primary-small" asp-controller="Manager" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-        </td>
-        <td class="edit">
-            <a class="btn-primary-small" asp-controller="Manager" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-        </td>
-    </tr>
+            <tr>
+                <td class="details">
+                    <a class="btn-primary-small" asp-controller="Manager" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnimalNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @item.DateOfBirth.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HerdNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PassportSerial)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MotherNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FatherNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlaceOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PassportDate)
+                </td>
+                <td class="edit">
+                    <a class="btn-primary-small" asp-controller="Manager" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                </td>
+                <td class="edit">
+                    <a class="btn-primary-small" asp-controller="Manager" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
         }
     </table>
 </div>

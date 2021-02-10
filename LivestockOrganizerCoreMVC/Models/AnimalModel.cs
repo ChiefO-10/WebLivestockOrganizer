@@ -1,4 +1,5 @@
-﻿using LsOCore.DataContracts;
+﻿using LivestockOrganizerCoreMVC.TypeConverters;
+using LsOCore.DataContracts;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -17,7 +18,7 @@ namespace LivestockOrganizerCoreMVC.Models
         public string Country { get; set; }
         [DisplayName("Gender")]
         [Required]
-        [RegularExpression(@"^(Female|Male)$")]
+        [RegularExpression(@"^(Female|Male)$",ErrorMessage = "Choose Male or Female")]
         public string Gender { get; set; }
         [DisplayName("Mother Number")]
         public string MotherNumber { get; set; }
@@ -26,6 +27,7 @@ namespace LivestockOrganizerCoreMVC.Models
         [DisplayName("Date Of Birth")]
         [Required]
         [DataType(DataType.Date)]
+        [TypeConverter(typeof(deDateTimeConverter))]
         public DateTime DateOfBirth { get; set; }
         [DisplayName("Herd Number")]
         public string HerdNumber { get; set; }
@@ -35,6 +37,7 @@ namespace LivestockOrganizerCoreMVC.Models
         public string PassportSerial { get; set; }
         [DisplayName("Passport Date")]
         [DataType(DataType.Date)]
+        [TypeConverter(typeof(deDateTimeConverter))]
         public DateTime PassportDate { get; set; }
     }
 }
